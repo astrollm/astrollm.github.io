@@ -1,0 +1,166 @@
+---
+const phases = [
+  {
+    label: 'Phase 1',
+    tag: 'Now',
+    title: 'Retrieval-grounded copilot',
+    description: 'ADS + SIMBAD + citations + first fine-tune',
+    active: true,
+    titleColor: 'var(--text-primary)',
+    descColor: 'var(--text-tertiary)',
+    labelColor: 'var(--accent-amber)',
+    dotColor: 'var(--accent-amber)',
+  },
+  {
+    label: 'Phase 2',
+    tag: null,
+    title: 'Expanded tools + serious model',
+    description: 'NED, PDS, Gaia integration + DPO alignment',
+    active: false,
+    titleColor: 'var(--text-secondary)',
+    descColor: 'var(--text-tertiary)',
+    labelColor: 'var(--text-tertiary)',
+    dotColor: 'var(--border-subtle)',
+  },
+  {
+    label: 'Phase 3',
+    tag: null,
+    title: 'Scientific tool ecosystem',
+    description: 'Model family + continuous learning + API',
+    active: false,
+    titleColor: 'var(--text-tertiary)',
+    descColor: 'var(--text-tertiary)',
+    labelColor: 'var(--text-tertiary)',
+    dotColor: 'var(--border-subtle)',
+  },
+  {
+    label: 'Phase 4+',
+    tag: null,
+    title: 'Multimodal knowledge house',
+    description: 'Spectra, images, light curves + AION-1 bridge',
+    active: false,
+    titleColor: 'var(--text-tertiary)',
+    descColor: 'var(--text-tertiary)',
+    labelColor: 'var(--text-tertiary)',
+    dotColor: 'var(--border-subtle)',
+  },
+];
+---
+
+<section class="roadmap">
+  <div class="roadmap__inner">
+    <span class="section-label">Roadmap</span>
+    <h2 class="roadmap__headline">Building in the open</h2>
+
+    <div class="roadmap__timeline">
+      {phases.map((phase, i) => (
+        <div class={`roadmap__phase ${phase.active ? 'roadmap__phase--active' : ''}`}
+             style={`--title-color: ${phase.titleColor}; --desc-color: ${phase.descColor}; --label-color: ${phase.labelColor}; --dot-color: ${phase.dotColor}`}>
+          <div class="roadmap__phase-marker">
+            <div class="roadmap__phase-dot"></div>
+            {i < phases.length - 1 && <div class="roadmap__phase-line"></div>}
+          </div>
+          <div class="roadmap__phase-content">
+            <div class="roadmap__phase-label">
+              <span>{phase.label}</span>
+              {phase.tag && <span class="roadmap__phase-tag">{phase.tag}</span>}
+            </div>
+            <h3 class="roadmap__phase-title">{phase.title}</h3>
+            <p class="roadmap__phase-desc">{phase.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .roadmap {
+    padding: 8rem 2rem;
+  }
+
+  .roadmap__inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .roadmap__headline {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+
+  .roadmap__timeline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .roadmap__phase {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .roadmap__phase-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    padding-top: 0.35rem;
+  }
+
+  .roadmap__phase-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--dot-color, var(--border-subtle));
+    flex-shrink: 0;
+  }
+
+  .roadmap__phase-line {
+    width: 1px;
+    flex: 1;
+    background: var(--border-subtle);
+    min-height: 2rem;
+  }
+
+  .roadmap__phase-content {
+    padding-bottom: 2.5rem;
+  }
+
+  .roadmap__phase-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--label-color, var(--text-tertiary));
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .roadmap__phase-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--accent-amber);
+    border: 1px solid var(--accent-amber);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    line-height: 1;
+  }
+
+  .roadmap__phase-title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 0.35rem;
+    color: var(--title-color, var(--text-primary));
+  }
+
+  .roadmap__phase-desc {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--desc-color, var(--text-tertiary));
+    line-height: 1.6;
+  }
+</style>

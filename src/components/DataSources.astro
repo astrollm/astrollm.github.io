@@ -1,0 +1,128 @@
+---
+const sources = [
+  { name: 'NASA ADS', barName: 'NASA ADS', stat: '15M+', description: 'publications, citation graphs, co-readership' },
+  { name: 'SIMBAD', barName: 'SIMBAD', stat: '20.5M', description: 'astronomical objects, cross-identifications' },
+  { name: 'Exoplanet Archive', barName: 'NASA Exoplanet Archive', stat: '5,700+', description: 'confirmed planets with full parameters' },
+  { name: 'NED', barName: 'NED', stat: '', description: 'Extragalactic objects, galaxies, quasars, AGN' },
+  { name: 'PDS', barName: 'PDS', stat: '', description: 'NASA planetary mission data archives' },
+  { name: 'Gaia', barName: 'Gaia', stat: '1.7B', description: 'stars with positions and distances' },
+];
+---
+
+<section class="data-sources">
+  <div class="data-sources__inner">
+    <span class="section-label">Data</span>
+    <h2 class="data-sources__headline">Built on the open astronomy ecosystem</h2>
+
+    <ul class="data-sources__bar">
+      <li class="data-sources__bar-label">Built on</li>
+      {sources.map((source) => (
+        <li class="data-sources__bar-name">{source.barName}</li>
+      ))}
+    </ul>
+
+    <ul class="data-sources__list">
+      {sources.map((source) => (
+        <li class="data-sources__item">
+          <span class="data-sources__item-name">{source.name}</span>
+          <span class="data-sources__item-desc">
+            {source.stat && <span class="data-sources__item-stat">{source.stat}</span>}
+            {source.stat ? ' ' : ''}{source.description}
+          </span>
+        </li>
+      ))}
+    </ul>
+
+    <p class="data-sources__footnote">
+      All data sources are free, open access, and publicly funded. AstroLLM stands on the shoulders of decades of open astronomical infrastructure.
+    </p>
+  </div>
+</section>
+
+<style>
+  .data-sources {
+    padding: 8rem 2rem;
+  }
+
+  .data-sources__inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .data-sources__headline {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+  }
+
+  .data-sources__bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem 0;
+    list-style: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .data-sources__bar-label {
+    color: var(--text-tertiary);
+    margin-right: 0.5rem;
+  }
+
+  .data-sources__bar-name {
+    white-space: nowrap;
+  }
+
+  .data-sources__bar-name + .data-sources__bar-name::before {
+    content: '\00B7';
+    color: var(--text-tertiary);
+    margin: 0 0.5rem;
+  }
+
+  .data-sources__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .data-sources__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .data-sources__item-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .data-sources__item-desc {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .data-sources__item-stat {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+    color: var(--accent-blue);
+  }
+
+  .data-sources__footnote {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--text-tertiary);
+    line-height: 1.7;
+  }
+</style>

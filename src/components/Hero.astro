@@ -1,0 +1,174 @@
+<section class="hero">
+  <div class="hero__content">
+    <h1 class="hero__title">Astro<span class="hero__title-accent">LLM</span></h1>
+
+    <p class="hero__tagline">
+      A domain-specialized language model for astronomy and astrophysics
+    </p>
+
+    <div class="hero__metrics">
+      <span class="hero__metric">15M+ papers</span>
+      <span class="hero__dot">&middot;</span>
+      <span class="hero__metric">20.5M objects</span>
+      <span class="hero__dot">&middot;</span>
+      <span class="hero__metric">5,700+ exoplanets</span>
+    </div>
+
+    <p class="hero__vision">
+      An open intelligence layer for astronomy — retrieval-grounded, tool-integrated, and built in the open.
+    </p>
+
+    <div class="hero__links">
+      <a href="https://github.com/astrollm" class="hero__link" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://x.com/astrollm" class="hero__link" target="_blank" rel="noopener noreferrer">Follow updates</a>
+    </div>
+  </div>
+
+  <div class="hero__scroll-indicator" aria-hidden="true">
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 4L8 18M8 18L3 13M8 18L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .hero__content {
+    animation: heroFadeIn 1s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+  }
+
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero__title {
+    font-size: clamp(48px, 8vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title-accent {
+    color: var(--accent-blue);
+  }
+
+  .hero__tagline {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero__metrics {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .hero__metric {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--accent-blue);
+    background: var(--bg-surface);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  .hero__dot {
+    color: var(--text-tertiary);
+    font-size: 15px;
+  }
+
+  .hero__vision {
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero__links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .hero__link {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .hero__link:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      text-decoration: none;
+    }
+  }
+
+  .hero__scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    color: var(--text-tertiary);
+    animation: gentleBounce 2.5s ease-in-out infinite;
+  }
+
+  @keyframes gentleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__content {
+      animation: none;
+    }
+
+    .hero__scroll-indicator {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero__dot {
+      display: none;
+    }
+
+    .hero__metrics {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

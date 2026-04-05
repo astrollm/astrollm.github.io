@@ -8,12 +8,12 @@
   /* Text */
   --text-primary: #E8E5DF;
   --text-secondary: #9A978F;
-  --text-tertiary: #5E5C57;
+  --text-tertiary: #807E77;
 
   /* Accents */
   --accent-blue: #7B93C4;
   --accent-amber: #C9A76C;
-  --accent-blue-dim: #4A5A7A;
+  --accent-blue-dim: #637498;
 
   /* Borders */
   --border-subtle: #2A2A32;
@@ -35,10 +35,20 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body::after {
+    display: none;
+  }
+}
+
 body {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Source Serif 4", Georgia, serif;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.75;
   color: var(--text-primary);
   background-color: var(--bg-primary);
@@ -75,8 +85,9 @@ a:hover {
 
 /* Section label style */
 .section-label {
+  display: block;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -87,5 +98,5 @@ a:hover {
 /* Mono text for technical details */
 .mono {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 14px;
+  font-size: 15px;
 }

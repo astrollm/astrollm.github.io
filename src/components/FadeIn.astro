@@ -1,0 +1,82 @@
+---
+interface Props {
+  class?: string;
+  stagger?: number;
+}
+
+const { class: className, stagger = 0 } = Astro.props;
+---
+
+<fade-in
+  class:list={[className]}
+  {...(stagger > 0 ? { 'data-stagger': stagger } : {})}
+>
+  <slot />
+</fade-in>
+
+<script>
+  class FadeInElement extends HTMLElement {
+    constructor() {
+      super();
+
+      const stagger = parseInt(this.dataset.stagger || '0', 10);
+
+      // Mark that JS is active — CSS will hide children only when this class is present
+      this.classList.add('fade-in--js');
+
+      if (!('IntersectionObserver' in window)) {
+        this.classList.add('fade-in--visible');
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (stagger > 0) {
+                const children = Array.from(this.children) as HTMLElement[];
+                children.forEach((child, i) => {
+                  child.style.transitionDelay = `${i * stagger}ms`;
+                });
+              }
+              this.classList.add('fade-in--visible');
+              observer.unobserve(this);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      observer.observe(this);
+    }
+  }
+
+  customElements.define('fade-in', FadeInElement);
+</script>
+
+<style>
+  fade-in {
+    display: block;
+  }
+
+  /* Only hide content when JS has added the --js class */
+  fade-in.fade-in--js > :global(*) {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 700ms cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 700ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  fade-in.fade-in--visible > :global(*) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    fade-in.fade-in--js > :global(*) {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

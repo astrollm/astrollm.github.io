@@ -1,0 +1,83 @@
+<section class="vision">
+  <span class="section-label">Vision</span>
+  <h2 class="vision__headline">Not a benchmark model.<br />A knowledge system.</h2>
+
+  <div class="vision__body">
+    <p>
+      AstroLLM is building an open intelligence layer for astronomy — connecting the world's
+      astronomical literature, databases, and observations through specialized language models
+      that can retrieve, reason, cite, and teach.
+    </p>
+    <p>
+      Existing astronomy LLMs optimize for benchmark scores. AstroLLM optimizes for the
+      workflows researchers actually use: finding papers, resolving objects, explaining evidence,
+      and teaching at the right level.
+    </p>
+  </div>
+
+  <ul class="vision__features">
+    <li>
+      <strong>Retrieval-grounded</strong>
+      <span>&mdash; Every answer cites real papers from NASA ADS</span>
+    </li>
+    <li>
+      <strong>Tool-integrated</strong>
+      <span>&mdash; Queries SIMBAD, Exoplanet Archive, and astronomical databases live</span>
+    </li>
+    <li>
+      <strong>Openly built</strong>
+      <span>&mdash; Models, data, evaluation, and training pipeline are all open source</span>
+    </li>
+  </ul>
+</section>
+
+<style>
+  .vision {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+  }
+
+  .vision__headline {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+  }
+
+  .vision__body {
+    margin-bottom: 3rem;
+  }
+
+  .vision__body p {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .vision__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .vision__features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .vision__features li {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-blue-dim);
+  }
+
+  .vision__features strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+</style>
