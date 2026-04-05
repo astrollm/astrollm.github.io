@@ -1,0 +1,79 @@
+---
+interface Props {
+  tag?: string;
+  class?: string;
+  stagger?: number;
+}
+
+const { tag: Tag = 'div', class: className = '', stagger = 0 } = Astro.props;
+---
+
+<fade-in class={className} data-stagger={stagger} style={`--stagger: ${stagger}ms`}>
+  <slot />
+</fade-in>
+
+<script>
+  class FadeInElement extends HTMLElement {
+    constructor() {
+      super();
+
+      const stagger = parseInt(this.dataset.stagger || '0', 10);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Stagger children if stagger > 0
+              if (stagger > 0) {
+                const children = Array.from(this.children);
+                children.forEach((child, i) => {
+                  (child as HTMLElement).style.transitionDelay = `${i * stagger}ms`;
+                  (child as HTMLElement).classList.add('fade-in--visible');
+                });
+              }
+              this.classList.add('fade-in--visible');
+              observer.unobserve(this);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      observer.observe(this);
+    }
+  }
+
+  customElements.define('fade-in', FadeInElement);
+</script>
+
+<style>
+  fade-in {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 700ms cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 700ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  fade-in.fade-in--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  fade-in > :global(*) {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 700ms cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 700ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  fade-in.fade-in--visible > :global(*) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* When no stagger, children inherit parent visibility instantly */
+  fade-in:not([data-stagger="0"]) > :global(*) {
+    transition-delay: var(--stagger, 0ms);
+  }
+</style>

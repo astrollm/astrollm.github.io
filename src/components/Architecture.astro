@@ -1,0 +1,130 @@
+---
+const steps = [
+  {
+    title: 'Query',
+    description: '"What do we know about TRAPPIST-1e\'s atmosphere?"',
+    isQuery: true,
+  },
+  {
+    title: 'Retrieve',
+    lines: [
+      'Search 15M+ papers via NASA ADS',
+      'Resolve objects via SIMBAD (20.5M astronomical objects)',
+      'Cross-reference with NASA Exoplanet Archive',
+    ],
+  },
+  {
+    title: 'Reason',
+    lines: [
+      'Fine-tuned astronomy model interprets evidence',
+      'Adapts explanation depth to your level',
+    ],
+  },
+  {
+    title: 'Cite',
+    lines: [
+      'Every claim linked to source papers',
+      'ADS bibcodes trace back to the literature',
+    ],
+  },
+];
+---
+
+<section class="architecture">
+  <div class="architecture__inner">
+    <span class="section-label">How It Works</span>
+    <h2 class="architecture__headline">Retrieve. Reason. Cite.</h2>
+
+    <div class="architecture__flow">
+      {steps.map((step, i) => (
+        <div class={`architecture__step ${step.isQuery ? 'architecture__step--query' : ''}`}>
+          <div class="architecture__step-title">{step.title}</div>
+          {step.isQuery ? (
+            <p class="architecture__step-query">{step.description}</p>
+          ) : (
+            <div class="architecture__step-lines">
+              {step.lines?.map((line) => (
+                <p>{line}</p>
+              ))}
+            </div>
+          )}
+          {i < steps.length - 1 && (
+            <div class="architecture__connector">
+              <svg width="2" height="32" viewBox="0 0 2 32" fill="none">
+                <line x1="1" y1="0" x2="1" y2="32" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="3 3" />
+              </svg>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .architecture {
+    padding: 8rem 2rem;
+  }
+
+  .architecture__inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .architecture__headline {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 3.5rem;
+  }
+
+  .architecture__flow {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .architecture__step {
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--accent-blue-dim);
+  }
+
+  .architecture__step--query {
+    border-left-color: var(--border-subtle);
+  }
+
+  .architecture__step-title {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent-blue);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .architecture__step--query .architecture__step-title {
+    color: var(--text-tertiary);
+  }
+
+  .architecture__step-query {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-secondary);
+    font-size: 17px;
+  }
+
+  .architecture__step-lines p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .architecture__connector {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.75rem 0;
+    margin-left: -1px;
+  }
+</style>

@@ -1,10 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FadeIn from '../components/FadeIn.astro';
+import Vision from '../components/Vision.astro';
+import Architecture from '../components/Architecture.astro';
+import Models from '../components/Models.astro';
+import DataSources from '../components/DataSources.astro';
+import Roadmap from '../components/Roadmap.astro';
+import OpenSource from '../components/OpenSource.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
   <main>
-    <h1>AstroLLM</h1>
-    <p>A domain-specialized language model for astronomy and astrophysics</p>
+    <Hero />
+
+    <FadeIn stagger={120}>
+      <Vision />
+    </FadeIn>
+
+    <FadeIn stagger={120}>
+      <Architecture />
+    </FadeIn>
+
+    <FadeIn stagger={120}>
+      <Models />
+    </FadeIn>
+
+    <FadeIn stagger={120}>
+      <DataSources />
+    </FadeIn>
+
+    <FadeIn stagger={120}>
+      <Roadmap />
+    </FadeIn>
+
+    <FadeIn stagger={120}>
+      <OpenSource />
+    </FadeIn>
+
+    <Footer />
   </main>
 </Layout>

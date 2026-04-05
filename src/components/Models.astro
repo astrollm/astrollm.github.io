@@ -1,0 +1,168 @@
+---
+const models = [
+  {
+    name: 'Nano',
+    params: '1-3B',
+    tagline: 'Runs everywhere',
+    ram: '2-4 GB RAM',
+    targets: 'Phone, laptop, RPi',
+    active: false,
+  },
+  {
+    name: 'Core',
+    params: '7-8B',
+    tagline: 'The sweet spot',
+    ram: '4-8 GB VRAM',
+    targets: 'Mac M2+, RTX 3060+',
+    active: true,
+  },
+  {
+    name: 'Pro',
+    params: '14-32B',
+    tagline: 'Personal cloud power',
+    ram: '10-24 GB VRAM',
+    targets: 'A100, RTX 4090',
+    active: false,
+  },
+  {
+    name: 'Ultra',
+    params: '70B+',
+    tagline: 'Institutional grade',
+    ram: '40-80+ GB VRAM',
+    targets: 'Multi-GPU cluster',
+    active: false,
+  },
+];
+---
+
+<section class="models">
+  <div class="models__inner">
+    <span class="section-label">Models</span>
+    <h2 class="models__headline">From phone to cluster</h2>
+
+    <div class="models__grid">
+      {models.map((model) => (
+        <div class={`models__card ${model.active ? 'models__card--active' : ''}`}>
+          <div class="models__card-header">
+            <h3 class="models__card-name">{model.name}</h3>
+            {model.active && (
+              <span class="models__badge">Building now</span>
+            )}
+          </div>
+          <span class="models__card-params">{model.params}</span>
+          <div class="models__card-divider"></div>
+          <p class="models__card-tagline">{model.tagline}</p>
+          <p class="models__card-detail">{model.ram}</p>
+          <p class="models__card-detail">{model.targets}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .models {
+    padding: 8rem 2rem;
+  }
+
+  .models__inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .models__headline {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+
+  .models__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .models__card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .models__card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-hover);
+  }
+
+  .models__card--active {
+    border-color: var(--accent-amber);
+  }
+
+  .models__card--active:hover {
+    border-color: var(--accent-amber);
+  }
+
+  .models__card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .models__card-name {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .models__badge {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent-amber);
+    white-space: nowrap;
+  }
+
+  .models__card-params {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--accent-blue);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .models__card-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin-bottom: 1rem;
+  }
+
+  .models__card-tagline {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .models__card-detail {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 800px) {
+    .models__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .models__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
