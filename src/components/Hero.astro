@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <div class="hero__scroll-indicator">
+  <div class="hero__scroll-indicator" aria-hidden="true">
     <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M8 4L8 18M8 18L3 13M8 18L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -34,6 +34,7 @@
 <style>
   .hero {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -148,6 +149,16 @@
   @keyframes gentleBounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__content {
+      animation: none;
+    }
+
+    .hero__scroll-indicator {
+      animation: none;
+    }
   }
 
   @media (max-width: 600px) {

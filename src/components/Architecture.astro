@@ -35,34 +35,28 @@ const steps = [
     <span class="section-label">How It Works</span>
     <h2 class="architecture__headline">Retrieve. Reason. Cite.</h2>
 
-    <div class="architecture__flow">
+    <ol class="architecture__flow">
       {steps.map((step, i) => (
-        <>
-          <div class={`architecture__step ${step.isQuery ? 'architecture__step--query' : ''}`}>
-            <div class="architecture__step-marker">
-              <div class="architecture__step-dot"></div>
-            </div>
-            <div class="architecture__step-body">
-              <div class="architecture__step-title">{step.title}</div>
-              {step.isQuery ? (
-                <p class="architecture__step-query">{step.description}</p>
-              ) : (
-                <div class="architecture__step-lines">
-                  {step.lines?.map((line) => (
-                    <p>{line}</p>
-                  ))}
-                </div>
-              )}
-            </div>
+        <li class={`architecture__step ${step.isQuery ? 'architecture__step--query' : ''}`}>
+          <div class="architecture__step-marker" aria-hidden="true">
+            <div class="architecture__step-dot"></div>
+            {i < steps.length - 1 && <div class="architecture__connector-line"></div>}
           </div>
-          {i < steps.length - 1 && (
-            <div class="architecture__connector" aria-hidden="true">
-              <div class="architecture__connector-line"></div>
-            </div>
-          )}
-        </>
+          <div class="architecture__step-body">
+            <div class="architecture__step-title">{step.title}</div>
+            {step.isQuery ? (
+              <p class="architecture__step-query">{step.description}</p>
+            ) : (
+              <div class="architecture__step-lines">
+                {step.lines?.map((line) => (
+                  <p>{line}</p>
+                ))}
+              </div>
+            )}
+          </div>
+        </li>
       ))}
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -86,6 +80,7 @@ const steps = [
   .architecture__flow {
     display: flex;
     flex-direction: column;
+    list-style: none;
   }
 
   .architecture__step {
@@ -95,7 +90,8 @@ const steps = [
 
   .architecture__step-marker {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     padding-top: 0.3rem;
     flex-shrink: 0;
   }
@@ -143,16 +139,10 @@ const steps = [
     line-height: 1.7;
   }
 
-  .architecture__connector {
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 3px;
-    height: 2.5rem;
-  }
-
   .architecture__connector-line {
     width: 1px;
-    height: 100%;
+    flex: 1;
+    min-height: 1.5rem;
     background: repeating-linear-gradient(
       to bottom,
       var(--border-subtle) 0px,

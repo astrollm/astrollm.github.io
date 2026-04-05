@@ -14,15 +14,12 @@ const sources = [
     <span class="section-label">Data</span>
     <h2 class="data-sources__headline">Built on the open astronomy ecosystem</h2>
 
-    <div class="data-sources__bar">
-      <span class="data-sources__bar-label">Built on</span>
-      {sources.map((source, i) => (
-        <>
-          <span class="data-sources__bar-name">{source.barName}</span>
-          {i < sources.length - 1 && <span class="data-sources__bar-dot">&middot;</span>}
-        </>
+    <ul class="data-sources__bar">
+      <li class="data-sources__bar-label">Built on</li>
+      {sources.map((source) => (
+        <li class="data-sources__bar-name">{source.barName}</li>
       ))}
-    </div>
+    </ul>
 
     <ul class="data-sources__list">
       {sources.map((source) => (
@@ -63,7 +60,8 @@ const sources = [
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.25rem 0;
+    list-style: none;
     font-family: "IBM Plex Mono", monospace;
     font-size: 14px;
     color: var(--text-secondary);
@@ -81,8 +79,10 @@ const sources = [
     white-space: nowrap;
   }
 
-  .data-sources__bar-dot {
+  .data-sources__bar-name + .data-sources__bar-name::before {
+    content: '\00B7';
     color: var(--text-tertiary);
+    margin: 0 0.5rem;
   }
 
   .data-sources__list {

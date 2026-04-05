@@ -35,6 +35,16 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body::after {
+    display: none;
+  }
+}
+
 body {
   font-family: "Source Serif 4", Georgia, serif;
   font-weight: 400;
