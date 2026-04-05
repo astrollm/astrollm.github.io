@@ -1,6 +1,6 @@
 <section class="hero">
   <div class="hero__stars" aria-hidden="true">
-    <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Abstract dot scatter — not a literal star field, just atmospheric dots -->
       <circle cx="120" cy="80" r="1" fill="currentColor" opacity="0.4"/>
       <circle cx="680" cy="120" r="1.2" fill="currentColor" opacity="0.3"/>
@@ -96,8 +96,7 @@
 
   .hero__stars svg {
     width: 100%;
-    max-width: 800px;
-    height: auto;
+    height: 100%;
   }
 
   .hero__title {
