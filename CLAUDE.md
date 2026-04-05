@@ -358,9 +358,10 @@ astrollm-site/
 ├── package.json
 ├── tsconfig.json
 ├── public/
-│   ├── favicon.svg           # Simple "A" or star glyph
-│   ├── og-image.png          # Social sharing image (1200x630)
-│   └── noise.png             # Tiny grain texture tile (~200x200px)
+│   ├── favicon.svg           # Stylized "A" with star dot at apex (accent blue)
+│   └── og-image.png          # Social sharing image (1200x630, typographic card)
+├── scripts/
+│   └── generate-og-image.html  # HTML template for regenerating og-image.png via Playwright
 ├── src/
 │   ├── layouts/
 │   │   └── Layout.astro      # Base layout with head, fonts, grain overlay
@@ -452,24 +453,52 @@ Use **Bun** for the website — fast installs, native TypeScript support, and
 consistent with the main AstroLLM project. GitHub Actions supports Bun via
 `oven-sh/setup-bun`.
 
+### Favicon
+
+Stylized "A" letterform with a small star/dot at the apex in accent blue (`#7B93C4`).
+The letter body is warm off-white (`#E8E5DF`). Simple SVG geometry that reads clearly
+at 16x16 and 32x32. Located at `public/favicon.svg`.
+
+### OG Image
+
+Typographic card (1200x630, ~35KB PNG) on the dark background:
+- AstroLLM wordmark in Cormorant Garamond with "LLM" in accent blue
+- Tagline in Source Serif 4
+- Three metric badges in IBM Plex Mono (15M+ papers, 20.5M objects, 5,700+ exoplanets)
+- Domain (astrollm.org) at bottom
+
+**To regenerate** (e.g., after changing tagline or metrics):
+```bash
+npx playwright screenshot --viewport-size="1200,630" --wait-for-timeout=3000 \
+  scripts/generate-og-image.html public/og-image.png
+```
+The HTML template at `scripts/generate-og-image.html` loads Google Fonts and matches
+the site's visual style. Playwright is needed for correct font rendering.
+
 ### SEO & Meta
 
 ```html
 <title>AstroLLM — Domain-specialized LLM for Astronomy & Astrophysics</title>
 <meta name="description" content="An open-source, retrieval-grounded language model for astronomy research, education, and discovery. Built on NASA ADS, SIMBAD, and the open astronomy ecosystem." />
+<link rel="canonical" href="https://astrollm.org" />
+<meta property="og:type" content="website" />
 <meta property="og:title" content="AstroLLM" />
 <meta property="og:description" content="A domain-specialized language model for astronomy and astrophysics" />
-<meta property="og:image" content="/og-image.png" />
 <meta property="og:url" content="https://astrollm.org" />
+<meta property="og:image" content="https://astrollm.org/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AstroLLM" />
+<meta name="twitter:description" content="A domain-specialized language model for astronomy and astrophysics" />
+<meta name="twitter:image" content="https://astrollm.org/og-image.png" />
+<meta name="theme-color" content="#0E0E12" />
 ```
 
 ### Performance
 
 - Zero JavaScript frameworks in the client bundle (Astro's strength)
-- Fonts: preload the display font, lazy-load the mono font
-- Grain texture: tiny PNG tile (~2KB) repeated via CSS, not a large image
-- No images in the initial placeholder — pure CSS + SVG + typography
+- Fonts: preload Cormorant Garamond + Source Serif 4, lazy-load IBM Plex Mono
+- Grain texture: inline SVG noise via CSS `::after`, disabled for `prefers-reduced-motion`
+- Only image: `og-image.png` (~35KB) for social sharing — not loaded on page
 - Total page weight target: under 100KB (excluding fonts)
 
 ---
