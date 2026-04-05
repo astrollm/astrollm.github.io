@@ -1,0 +1,91 @@
+/* ===== Color Palette ===== */
+:root {
+  /* Backgrounds */
+  --bg-primary: #0E0E12;
+  --bg-surface: #16161C;
+  --bg-elevated: #1E1E26;
+
+  /* Text */
+  --text-primary: #E8E5DF;
+  --text-secondary: #9A978F;
+  --text-tertiary: #5E5C57;
+
+  /* Accents */
+  --accent-blue: #7B93C4;
+  --accent-amber: #C9A76C;
+  --accent-blue-dim: #4A5A7A;
+
+  /* Borders */
+  --border-subtle: #2A2A32;
+  --border-hover: #3A3A44;
+}
+
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+/* ===== Grain Overlay ===== */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Section label style */
+.section-label {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 1rem;
+}
+
+/* Mono text for technical details */
+.mono {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+}
