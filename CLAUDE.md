@@ -65,47 +65,52 @@ The result should feel like a research institution's announcement — not a star
 
 Use Google Fonts loaded via Astro:
 
-**Two fonts only** (load efficiency matters for a static site):
+**Three fonts** (display + body + mono):
 
-1. **Cormorant Garamond** — weights 300, 400, 500, 600 (regular + italic for 300 and 400)
-   - `https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap`
-2. **IBM Plex Mono** — weights 400, 500
+1. **Cormorant Garamond** (display) — weights 400, 500, 600 (regular + italic for 400)
+   - Used for headings, section labels, and the hero wordmark
+   - High-contrast display serif — elegant at large sizes
+   - `https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap`
+2. **Source Serif 4** (body) — weights 400, 500 (regular + italic for 400)
+   - Used for all body/prose text, descriptions, and secondary content
+   - Thicker strokes than Cormorant — readable on dark backgrounds at body sizes
+   - Optical size axis (`opsz`) auto-thickens at small sizes for legibility
+   - `https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap`
+3. **IBM Plex Mono** — weights 400, 500
    - `https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap`
 
-Preload Cormorant Garamond 400 and 600 (most used weights). Lazy-load IBM Plex Mono.
+Preload Cormorant Garamond 600 and Source Serif 4 400 (most used weights). Lazy-load IBM Plex Mono.
 
 - **Display / Headings**: `"Cormorant Garamond"` — scholarly, elegant, strong academic identity
   - Hero headline: 56-72px, font-weight 600, letter-spacing: -0.02em
   - Section headings: 36-44px, font-weight 600
-  - Sub-headings: 24-28px, font-weight 500
-  - Cormorant Garamond has weights 300-700, giving excellent typographic range
-- **Body / Prose**: `"Cormorant Garamond"` — same family for typographic unity (like AMI Labs / Oratomic)
-  - Body: 17-18px, font-weight 400, line-height 1.75
-  - This creates the "research publication" feel — cohesive, scholarly, warm
-  - Descriptions and secondary text: 16px, font-weight 300 (light weight for visual hierarchy)
-- **Labels / UI elements**: `"Cormorant Garamond"` at 13-14px, font-weight 600, letter-spacing 0.08em, uppercase
+  - Sub-headings: 22-28px, font-weight 500
+- **Body / Prose**: `"Source Serif 4"` — sturdy text serif optimized for screen reading
+  - Body: 19px, font-weight 400, line-height 1.75
+  - Descriptions and secondary text: 17-18px, font-weight 400
+  - Designed to pair with display serifs — creates clear hierarchy
+- **Labels / UI elements**: `"Cormorant Garamond"` at 14px, font-weight 600, letter-spacing 0.08em, uppercase
   - Section labels ("VISION", "MODELS", "DATA") use this treatment
-  - Navigation uses 14-15px, font-weight 500
-- **Mono / Technical**: `"IBM Plex Mono"` — 14px, for model sizes, parameter counts, database stats, code references
+- **Mono / Technical**: `"IBM Plex Mono"` — 15px, for model sizes, parameter counts, database stats, code references
   - Used for things like "7-8B", "Q4_K_M", "pgvector", "#0E0E12"
   - Color: `--accent-blue` or `--text-secondary` depending on context
 
 **Typography hierarchy example:**
 ```
-VISION                         ← 13px, Cormorant Garamond 600, uppercase, letter-spaced, --text-tertiary
+VISION                         ← 14px, Cormorant Garamond 600, uppercase, letter-spaced, --text-tertiary
 Not a benchmark model.         ← 40px, Cormorant Garamond 600, --text-primary
 A knowledge system.
                                
-Supporting paragraph text      ← 17px, Cormorant Garamond 400, --text-secondary, line-height 1.75
+Supporting paragraph text      ← 19px, Source Serif 4 400, --text-secondary, line-height 1.75
 that explains the vision in
 a warm, readable voice.
 
-15M+ papers                    ← 14px, IBM Plex Mono 400, --accent-blue (technical stats)
+15M+ papers                    ← 15px, IBM Plex Mono 400, --accent-blue (technical stats)
 ```
 
-**Key rule**: The entire page uses ONE type family (Cormorant Garamond) plus the mono font
-for technical details. Unity is the goal. Hierarchy comes from weight (300/400/500/600),
-size, color, and spacing — not from mixing serif and sans families.
+**Key rule**: Display headings use Cormorant Garamond for elegance. Body text uses Source Serif 4
+for readability on dark backgrounds. Mono font for technical details. The display-vs-text serif
+split creates natural hierarchy while keeping a cohesive scholarly feel.
 
 ### Texture & Atmosphere
 
