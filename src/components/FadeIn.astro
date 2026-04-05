@@ -4,10 +4,13 @@ interface Props {
   stagger?: number;
 }
 
-const { class: className = '', stagger = 0 } = Astro.props;
+const { class: className, stagger = 0 } = Astro.props;
 ---
 
-<fade-in class={className} data-stagger={stagger}>
+<fade-in
+  class:list={[className]}
+  {...(stagger > 0 ? { 'data-stagger': stagger } : {})}
+>
   <slot />
 </fade-in>
 
@@ -58,5 +61,13 @@ const { class: className = '', stagger = 0 } = Astro.props;
   fade-in.fade-in--visible > :global(*) {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    fade-in > :global(*) {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 </style>

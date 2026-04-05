@@ -6,7 +6,10 @@ const phases = [
     title: 'Retrieval-grounded copilot',
     description: 'ADS + SIMBAD + citations + first fine-tune',
     active: true,
-    opacity: 1,
+    titleColor: 'var(--text-primary)',
+    descColor: 'var(--text-tertiary)',
+    labelColor: 'var(--accent-amber)',
+    dotColor: 'var(--accent-amber)',
   },
   {
     label: 'Phase 2',
@@ -14,7 +17,10 @@ const phases = [
     title: 'Expanded tools + serious model',
     description: 'NED, PDS, Gaia integration + DPO alignment',
     active: false,
-    opacity: 0.7,
+    titleColor: 'var(--text-secondary)',
+    descColor: 'var(--text-tertiary)',
+    labelColor: 'var(--text-tertiary)',
+    dotColor: 'var(--border-subtle)',
   },
   {
     label: 'Phase 3',
@@ -22,7 +28,10 @@ const phases = [
     title: 'Scientific tool ecosystem',
     description: 'Model family + continuous learning + API',
     active: false,
-    opacity: 0.5,
+    titleColor: 'var(--text-tertiary)',
+    descColor: 'var(--text-tertiary)',
+    labelColor: 'var(--text-tertiary)',
+    dotColor: 'var(--border-subtle)',
   },
   {
     label: 'Phase 4+',
@@ -30,7 +39,10 @@ const phases = [
     title: 'Multimodal knowledge house',
     description: 'Spectra, images, light curves + AION-1 bridge',
     active: false,
-    opacity: 0.35,
+    titleColor: 'var(--text-tertiary)',
+    descColor: 'var(--text-tertiary)',
+    labelColor: 'var(--text-tertiary)',
+    dotColor: 'var(--border-subtle)',
   },
 ];
 ---
@@ -43,7 +55,7 @@ const phases = [
     <div class="roadmap__timeline">
       {phases.map((phase, i) => (
         <div class={`roadmap__phase ${phase.active ? 'roadmap__phase--active' : ''}`}
-             style={`--dim: ${phase.opacity}`}>
+             style={`--title-color: ${phase.titleColor}; --desc-color: ${phase.descColor}; --label-color: ${phase.labelColor}; --dot-color: ${phase.dotColor}`}>
           <div class="roadmap__phase-marker">
             <div class="roadmap__phase-dot"></div>
             {i < phases.length - 1 && <div class="roadmap__phase-line"></div>}
@@ -87,7 +99,6 @@ const phases = [
   .roadmap__phase {
     display: flex;
     gap: 1.5rem;
-    opacity: var(--dim, 1);
   }
 
   .roadmap__phase-marker {
@@ -102,12 +113,8 @@ const phases = [
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--border-subtle);
+    background: var(--dot-color, var(--border-subtle));
     flex-shrink: 0;
-  }
-
-  .roadmap__phase--active .roadmap__phase-dot {
-    background: var(--accent-amber);
   }
 
   .roadmap__phase-line {
@@ -125,15 +132,11 @@ const phases = [
     font-family: "IBM Plex Mono", monospace;
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-tertiary);
+    color: var(--label-color, var(--text-tertiary));
     margin-bottom: 0.35rem;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-  }
-
-  .roadmap__phase--active .roadmap__phase-label {
-    color: var(--accent-amber);
   }
 
   .roadmap__phase-tag {
@@ -151,20 +154,13 @@ const phases = [
     font-weight: 500;
     line-height: 1.3;
     margin-bottom: 0.35rem;
-  }
-
-  .roadmap__phase--active .roadmap__phase-title {
-    color: var(--text-primary);
-  }
-
-  .roadmap__phase:not(.roadmap__phase--active) .roadmap__phase-title {
-    color: var(--text-secondary);
+    color: var(--title-color, var(--text-primary));
   }
 
   .roadmap__phase-desc {
     font-size: 17px;
     font-weight: 400;
-    color: var(--text-tertiary);
+    color: var(--desc-color, var(--text-tertiary));
     line-height: 1.6;
   }
 </style>

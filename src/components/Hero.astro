@@ -130,10 +130,12 @@
     transition: border-color 0.3s ease, color 0.3s ease;
   }
 
-  .hero__link:hover {
-    color: var(--text-primary);
-    border-color: var(--border-hover);
-    text-decoration: none;
+  @media (hover: hover) {
+    .hero__link:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      text-decoration: none;
+    }
   }
 
   .hero__scroll-indicator {
