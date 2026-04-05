@@ -24,6 +24,11 @@ const { class: className, stagger = 0 } = Astro.props;
       // Mark that JS is active — CSS will hide children only when this class is present
       this.classList.add('fade-in--js');
 
+      if (!('IntersectionObserver' in window)) {
+        this.classList.add('fade-in--visible');
+        return;
+      }
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
